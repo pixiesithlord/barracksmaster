@@ -1,0 +1,7 @@
+.container.live_stream
+  coffee:
+    $ -> (
+      height = 0.9*($(window).height() - $('.navbar').height())
+      width = 0.9*$('.live_stream').width()
+      $('.live_stream').append('<iframe src="http://www.twitch.tv/cowsforyou/embed" scrolling="no" height="'+ height+ '" width="'+ width+'"></iframe>')
+    )
