@@ -1,0 +1,55 @@
+nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button" 
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to root_path do
+        = image_tag "logo.png", class:'img-responsive'
+
+    #navbar.navbar-collapse.collapse
+      ul.nav.navbar-nav
+        li
+          = link_to  "Ladder" , "/ladder"
+        li
+          = link_to  "Recent Matches" , "/matches"
+        li
+          = link_to  "Videos" , "/videos"
+        li
+          = link_to "Live Stream" , "/live_stream"
+        li
+          = link_to "Changelog" , "/changelog"
+
+        / For logging in later on
+        / li.dropdown
+        /   a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+        /     | Dropdown
+        /     span.caret
+        /   ul.dropdown-menu
+        /     li
+        /       a href="#"  Action
+        /     li
+        /       a href="#"  Another action
+        /     li
+        /       a href="#"  Something else here
+        /     li.divider role="separator" 
+        /     li.dropdown-header Nav header
+        /     li
+        /       a href="#"  Separated link
+        /     li
+        /       a href="#"  One more separated link
+
+coffee:
+  $(document).ready ->
+    action = window.location.pathname.split('/')[1]
+    # If there's no action, highlight the first menu item
+    if action == ''
+      $('ul.nav li:first').addClass 'active'
+    else
+      # Highlight current menu
+      $('ul.nav a[href="/' + action + '"]').parent().addClass 'active'
+      # Highlight parent menu item
+      $('ul.nav a[href="/' + action + '"]').parents('li').addClass 'active'
+    return

@@ -1,0 +1,40 @@
+$color-primary: darken(orange, 5%)
+$height-header: 4em
+$color-border: rgba(white, 0.3)
+
+html, body
+  font-family: 'Source Sans Pro'
+  background: #222
+  color: darken(white, 10%)
+  font-size: 16px
+
+.main
+  padding-top: $height-header
+
+.navbar
+  font-family: 'Montserrat', sans-serif
+  padding: 0.5em 0
+  border-bottom: 2px solid $color-border
+  .navbar-nav, img
+    height: $height-header
+  
+  ul.nav
+    li
+      a 
+        font-size: -8.9em
+        letter-spacing: 1px
+        line-height: 0.6*$height-header 
+        color: grey
+      &.active, &.active:hover
+        a
+          background: transparent
+          color: $color-primary
+
+.changelog
+
+  .box  
+    padding: 2em
+    margin: 2em auto
+    div
+      margin: 1em auto
+    border: 2px solid $color-border
