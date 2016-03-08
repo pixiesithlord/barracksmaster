@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   #ladder
   get '/top_players' => 'players#index'
   get '/changelog' => 'welcome#changelog'
-  
-
 
   get '/videos' => 'welcome#videos'
   get '/hall_of_fame' => 'welcome#hall_of_fame'

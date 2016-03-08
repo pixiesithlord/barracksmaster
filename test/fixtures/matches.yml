@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game_id: MyString
+  player_ids: MyString
+  game_time: MyString
+  connection_status: MyString
+  scoreboard_info: MyString
+
+two:
+  game_id: MyString
+  player_ids: MyString
+  game_time: MyString
+  connection_status: MyString
+  scoreboard_info: MyString

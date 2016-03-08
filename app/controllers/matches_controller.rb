@@ -3,6 +3,7 @@ class MatchesController < ApplicationController
   end
 
   def create
-    
+    puts params if params
+    redirect_to root_path
   end
 end
