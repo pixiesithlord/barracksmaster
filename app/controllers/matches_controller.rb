@@ -12,6 +12,7 @@ class MatchesController < ApplicationController
       m = Match.create(
         payload:    payload,
         match_id:   match_id,
+        game_time:  payload['rounds']['0']['game']['dr']/60,
         player_ids: players.map { |p| p['steamID32']}
       )
     end
