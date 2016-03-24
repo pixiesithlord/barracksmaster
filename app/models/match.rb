@@ -9,5 +9,6 @@ class Match < ActiveRecord::Base
   # steam id = the steam no. to identify the exact player 
   # matchID = the identifying no. for that match played
   
+  default_scope { order(created_at: :desc) }
   
 end
