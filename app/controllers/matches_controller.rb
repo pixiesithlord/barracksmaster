@@ -18,8 +18,8 @@ class MatchesController < ApplicationController
     end
 
     players.each do |player_data|
-      p           = Player.find_or_create_by(steamID: player_data["steamID32"])
-      p.points    = p.points.to_i + player_data['pt']
+      player = Player.find_or_create_by(steamID: player_data["steamID32"])
+      player.update(points: player.points.to_i + player_data['pt'].to_i)
     end
 
     render nothing: true
