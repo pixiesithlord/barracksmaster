@@ -5,16 +5,14 @@ class MatchesController < ApplicationController
 
   def create
     payload  = JSON.parse(params['payload'])
-    # players  = payload['rounds']['0']['players']
-    match_id = payload["dotaMatchID"]
+    players  = payload['players']
+
+    render nothing: true if players.count == 1
 
     unless Match.find_by(match_id: match_id)
-      m = Match.create(
-        payload:    payload,
-        # match_id:   match_id,
-        # game_time:  payload['rounds']['0']['game']['dr']/60,
-        # player_ids: players.map { |p| p['steamID32']}
-      )
+      m = Match.new(payload: payload)
+      # m.map_payload
+      m.save
     end
 
     # players.each do |player_data|
