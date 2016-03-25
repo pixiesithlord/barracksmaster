@@ -7,7 +7,7 @@ class MatchesController < ApplicationController
     payload  = JSON.parse(params['payload'])
 
     render nothing: true if players.count == 1
-
+    match_id = payload['dotaMatchID']
     m = Match.new
 
     unless Match.find_by(match_id: match_id)
