@@ -1,11 +1,11 @@
 class Player < ActiveRecord::Base
   default_scope {order(points: :desc)}
 
-  def steamID_from_32_to_64(id)
+  def self.steamID_from_32_to_64(id)
     ('765' + (id + 61197960265728).to_s).to_i
   end
 
-  def steamID_from_64_to_32(id)
+  def self.steamID_from_64_to_32(id)
     (id.to_s.slice(3, id.to_s.length)).to_i - 61197960265728
   end
 
