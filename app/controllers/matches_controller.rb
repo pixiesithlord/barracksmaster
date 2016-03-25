@@ -5,7 +5,7 @@ class MatchesController < ApplicationController
 
   def create
     payload  = JSON.parse(params['payload'])
-
+    players = payload['players']
     render nothing: true if players.count == 1
     match_id = payload['dotaMatchID']
     m = Match.new
