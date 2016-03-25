@@ -16,10 +16,10 @@ class MatchesController < ApplicationController
       m.save
     end
 
-    m.player_ids.each do |id|
-      player = Player.find_or_create_by(steamID: id)
-      player.update(points: player.points.to_i + player_data['pt'].to_i)
-    end
+    # m.player_ids.each do |id|
+    #   player = Player.find_or_create_by(steamID: id)
+    #   player.update(points: player.points.to_i + player_data['pt'].to_i)
+    # end
 
     render nothing: true
   end
