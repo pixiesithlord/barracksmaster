@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(version: 20160325114159) do
   end
 
   create_table "players", force: :cascade do |t|
-    t.integer  "steamID"
     t.integer  "match_ids",               array: true
     t.integer  "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json     "steam_data"
+    t.string   "steamID"
   end
 
 end

@@ -1,9 +1,6 @@
 class ChangeSteamIDtoStringForPlayer < ActiveRecord::Migration
-  def up
-    change_column :players, :steamID, :integer
-  end
-
-  def down
-    change_column :players, :steamID, :string
+  def change
+    remove_column :players, :steamID, :integer
+    add_column :players, :steamID, :string
   end
 end
