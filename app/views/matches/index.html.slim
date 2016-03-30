@@ -1,15 +1,16 @@
-table.table
-  thead
-    tr
-      th Match ID
-      th Players
-      th Duration
-
-  tbody
-    - @matches.each do |m|
+.container
+  table.table
+    thead
       tr
-        td= m.match_id
-        td= m.player_ids
-        td= (m.game_time/60).to_s + " mins"
-        td= m.payload
-  
+        th Match ID
+        th Players
+        th Duration
+
+    tbody
+      - @matches.each do |m|
+        tr
+          td= m.match_id
+          td= m.player_ids
+          td= (m.game_time/60).to_s + " mins"
+          td= m.payload
+    
