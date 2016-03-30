@@ -15,4 +15,20 @@ class Player < ActiveRecord::Base
     resp = JSON.parse(Net::HTTP.get(URI(uri + steamID.to_s)))
     self.update_attributes(steam_data: resp['response']['players'][0])
   end
+
+  def name
+    steam_data['personaname']
+  end
+
+  def url
+    steam_data['profileurl']
+  end
+
+  def photo
+    steam_data['avatarfull']
+  end
+
+  def country_code
+    steam_data['loccountrycode']
+  end
 end
