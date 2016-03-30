@@ -1,0 +1,13 @@
+.container
+  table.table
+    thead
+      tr
+        th steam id
+        th points
+
+    tbody
+      - Player.limit(50).each do |p|
+        tr
+          td= p.steamID
+          td= p.points
+
