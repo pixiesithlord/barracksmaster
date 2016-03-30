@@ -6,11 +6,13 @@ class MatchesController < ApplicationController
   def create
     payload = JSON.parse(params['payload'])
 
-    render nothing: true if payload['players'].count == 1
+    unless payload['players'].count == 1
 
-    match_id = payload['dotaMatchID']
+      match_id = payload['dotaMatchID']
 
-    Match.new.map_payload(payload) unless Match.find_by(match_id: match_id)
+      Match.new.map_payload(payload) unless Match.find_by(match_id: match_id)
+      
+    end
 
     render nothing: true
   end
