@@ -1,6 +1,7 @@
 class Player < ActiveRecord::Base
   default_scope {order(points: :desc)}
-
+  after_create :set_steam_info
+  
   def self.steamID_from_32_to_64(id)
     ('765' + (id + 61197960265728).to_s).to_i
   end
