@@ -10,4 +10,14 @@ class WelcomeController < ApplicationController
 
   def videos
   end
+
+  def top_10
+    players = []
+    
+    Player.limit(10).each_with_index do |p, index|
+      players << {rank: index + 1, steamID: p.steamID, username: p.name }
+    end
+
+    render json: players
+  end
 end

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/top_players' => 'players#index'
   get '/changelog' => 'welcome#changelog'
 
+  get '/top_10' => 'welcome#top_10'
+
   get '/videos' => 'welcome#videos'
   get '/hall_of_fame' => 'welcome#hall_of_fame'
   get '/live_stream' => 'welcome#live_stream'
