@@ -13,9 +13,9 @@ class WelcomeController < ApplicationController
 
   def top_10
     players = []
-    
+
     Player.limit(10).each_with_index do |p, index|
-      players << {rank: index + 1, steamID: p.steamID, username: p.name }
+      players << {rank: index + 1, steamID: p.steamID, username: p.name, points: p.points }
     end
 
     render json: players
