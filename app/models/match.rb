@@ -48,6 +48,7 @@ class Match < ActiveRecord::Base
       end
       
       self.update_attributes(player_data: {'radiant': radiant, 'dire': dire})
+      player_data
 
     end
   end

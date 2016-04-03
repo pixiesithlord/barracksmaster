@@ -13,15 +13,22 @@
         tr
           td= time_ago_in_words(m.created_at)
           td= m.winning_side
+          
+          td
+            - m.players['radiant'].each do |player|
+              = link_to player['steam_data']['profileurl'] do
+                = player['steam_data']['personaname']
 
-          - [m.players[:radiant], m.players[:dire]].each do |player_list|
-            td
-              - player_list.each do |player|
-                = link_to player.url do
-                  = player.name
+              - if player != m.players['radiant'].last
+                br
 
-                - if player != player_list.last
-                  br
+          td
+            - m.players['dire'].each do |player|
+              = link_to player['steam_data']['profileurl'] do
+                = player['steam_data']['personaname']
 
+              - if player != m.players['dire'].last
+                br
+                
           td= (m.game_time/60).to_s + " mins"
     
