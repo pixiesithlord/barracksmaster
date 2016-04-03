@@ -20,5 +20,8 @@
                 = link_to player.url do
                   = player.name
 
+                - if player != player_list.last
+                  br
+
           td= (m.game_time/60).to_s + " mins"
     
