@@ -28,20 +28,27 @@ class Match < ActiveRecord::Base
   end
 
   def players
-    radiant = []
-    dire    = []
+    if self.player_data
+      player_data
 
-    offset = player_ids.count/2
+    else
 
-    player_ids.each_with_index do |id, index|
-      p = Player.find_by(steamID: id)
-      if index < (player_ids.count - offset)
-        radiant << p
-      else
-        dire << p
+      radiant = []
+      dire    = []
+
+      offset = player_ids.count/2
+
+      player_ids.each_with_index do |id, index|
+        p = Player.find_by(steamID: id)
+        if index < (player_ids.count - offset)
+          radiant << p
+        else
+          dire << p
+        end
       end
+      
+      self.update_attributes(player_data: {'radiant': radiant, 'dire': dire})
+
     end
-    
-    {'radiant': radiant, 'dire': dire}
   end
 end
