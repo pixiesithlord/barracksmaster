@@ -22,4 +22,26 @@ class Match < ActiveRecord::Base
     self.save
 
   end
+
+  def winning_side
+    payload['winner'] == 2 ? 'Radiant' : 'Dire'
+  end
+
+  def players
+    radiant = []
+    dire    = []
+
+    offset = player_ids.count/2
+
+    player_ids.each_with_index do |id, index|
+      p = Player.find_by(steamID: id)
+      if index < (player_ids.count - offset)
+        radiant << p
+      else
+        dire << p
+      end
+    end
+    
+    {'radiant': radiant, 'dire': dire}
+  end
 end

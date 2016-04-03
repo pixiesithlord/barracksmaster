@@ -2,15 +2,23 @@
   table.table
     thead
       tr
-        th Match ID
-        th Players
+        th Time
+        th Winner
+        th Radiant
+        th Dire
         th Duration
 
     tbody
       - @matches.each do |m|
         tr
-          td= m.match_id
-          td= m.player_ids
+          td= time_ago_in_words(m.created_at)
+          td= m.winning_side
+
+          - [m[:radiant], m[:dire]].each do |player_list|
+            td
+              - player_list.each do |player|
+                = link_to player.url do
+                  = player.name
+
           td= (m.game_time/60).to_s + " mins"
-          td= m.payload
     
