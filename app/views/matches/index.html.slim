@@ -14,7 +14,7 @@
           td= time_ago_in_words(m.created_at)
           td= m.winning_side
 
-          - [m[:radiant], m[:dire]].each do |player_list|
+          - [m.players[:radiant], m.players[:dire]].each do |player_list|
             td
               - player_list.each do |player|
                 = link_to player.url do
