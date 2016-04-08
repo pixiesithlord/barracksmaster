@@ -1,0 +1,34 @@
+.container
+  table.table
+    thead
+      tr
+        th Time
+        th Winner
+        th Radiant
+        th Dire
+        th Payload
+
+    tbody
+      - @matches.each do |m|
+        tr
+          td= time_ago_in_words(m.created_at)
+          td= m.winning_side
+          
+          td
+            - m.players['radiant'].each do |player|
+              = link_to player['steam_data']['profileurl'] do
+                = player['steam_data']['personaname']
+
+              - if player != m.players['radiant'].last
+                br
+
+          td
+            - m.players['dire'].each do |player|
+              = link_to player['steam_data']['profileurl'] do
+                = player['steam_data']['personaname']
+
+              - if player != m.players['dire'].last
+                br
+                
+          td= m.payload
+    

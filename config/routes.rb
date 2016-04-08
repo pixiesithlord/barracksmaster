@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #start here
   post '/new_match' => 'matches#create'
   get '/matches' => 'matches#index'
+  get '/matches_admin' => 'matches#index_admin'
   get '/matches/:id' => 'matches#show'
   get '/players/:id' => 'players#show'
   #ladder

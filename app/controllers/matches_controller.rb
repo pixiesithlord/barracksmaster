@@ -1,5 +1,11 @@
 class MatchesController < ApplicationController
+  http_basic_authenticate_with name: "myron", password: "myron", only: :index_admin
+
   def index
+    @matches = Match.limit(200)
+  end
+
+  def index_admin
     @matches = Match.limit(200)
   end
 
