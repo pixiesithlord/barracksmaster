@@ -3,12 +3,14 @@ class WelcomeController < ApplicationController
   end
 
   def changelog
+    expires_in 24.hours, public: true
   end
 
   def live_stream
   end
 
   def videos
+    expires_in 24.hours, public: true
   end
 
   def top_10

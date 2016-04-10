@@ -1,0 +1,10 @@
+.container
+  table.table
+    - Playlist.all.each do |playlist|
+      - playlist.each_slice(3) do |video_array|
+        .row
+          - video_array.each do |video|          
+            .col-xs-4
+              = link_to video['url'] do
+                = image_tag video['thumbnail'], class: 'img-responsive'
+                h4= video['title']
