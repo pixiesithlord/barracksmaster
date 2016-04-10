@@ -21,16 +21,3 @@ nav.navbar.navbar-default.navbar-inverse
           = link_to "Live Stream" , "/live_stream"
         li
           = link_to "Changelog" , "/changelog"
-
-coffee:
-  $(document).ready ->
-    action = window.location.pathname.split('/')[1]
-    # If there's no action, highlight the first menu item
-    if action == ''
-      $('ul.nav li:first').addClass 'active'
-    else
-      # Highlight current menu
-      $('ul.nav a[href="/' + action + '"]').parent().addClass 'active'
-      # Highlight parent menu item
-      $('ul.nav a[href="/' + action + '"]').parents('li').addClass 'active'
-    return
