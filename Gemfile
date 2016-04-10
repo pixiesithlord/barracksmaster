@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
+
 gem 'rails', '>= 4.2'
 gem 'steam-api'
 gem 'pg'
@@ -22,6 +23,8 @@ group :development do
 end
 
 group :production do
+  gem 'actionpack-action_caching'
+  gem 'dalli'
   gem "rails_12factor"
   gem "rails_stdout_logging"
   gem "rails_serve_static_assets"

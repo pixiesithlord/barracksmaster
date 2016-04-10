@@ -1,4 +1,8 @@
 class WelcomeController < ApplicationController
+  if Rails.env == 'production'
+    caches_page :index, expires_in: 2.hours
+  end
+
   def index
   end
 
