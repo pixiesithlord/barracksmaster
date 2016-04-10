@@ -11,7 +11,7 @@
     tbody
       - @matches.each do |m|
         tr
-          td= time_ago_in_words(m.created_at)
+          td= time_ago_in_words(m.created_at) + " ago"
           td= m.winning_side
           
           td
