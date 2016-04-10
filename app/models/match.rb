@@ -38,12 +38,22 @@ class Match < ActiveRecord::Base
 
       offset = player_ids.count/2
 
-      player_ids.each_with_index do |id, index|
-        p = Player.find_by(steamID: id)
-        if index < (player_ids.count - offset)
-          radiant << p
+      self.payload['players'].each do |player_data|
+        steamID_64_bit_id = Player.steamID_from_32_to_64(player_data['steamID32']).to_s
+        p                 = Player.find_by(steamID: steamID_64_bit_id)
+
+        if player_data['team']
+          if player_data['team'] == 2
+            radiant << p
+          else
+            dire << p
+          end
         else
-          dire << p
+          if (player_data['ph'] == "sven") || (player_data['ph'] == "templar_assassin")
+            radiant << p
+          else
+            dire << p
+          end
         end
       end
       
