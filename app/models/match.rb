@@ -46,15 +46,15 @@ class Match < ActiveRecord::Base
 
         if player_data['team']
           if player_data['team'] == 2
-            radiant << p
+            p && radiant << p
           else
-            dire << p
+            p && dire << p
           end
         else
           if (player_data['ph'] == "sven") || (player_data['ph'] == "templar_assassin")
-            radiant << p
+            p && radiant << p
           else
-            dire << p
+            p && dire << p
           end
         end
       end

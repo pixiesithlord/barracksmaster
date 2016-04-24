@@ -25,8 +25,9 @@
 
           td
             - m.players['dire'].each do |player|
-              = link_to player['steam_data']['profileurl'] do
-                = player['steam_data']['personaname']
+              -if player['steam_data']
+                = link_to player['steam_data']['profileurl'] do
+                  = player['steam_data']['personaname']
 
               - if player != m.players['dire'].last
                 br
