@@ -2,6 +2,7 @@
   table.table
     thead
       tr
+        th ID
         th Time
         th Winner
         th Radiant
@@ -11,6 +12,7 @@
     tbody
       - @matches.each do |m|
         tr
+          td= m.payload['dotaMatchID']
           td= time_ago_in_words(m.created_at) + " ago"
           td= m.winning_side
           
