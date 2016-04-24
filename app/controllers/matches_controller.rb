@@ -6,7 +6,7 @@ class MatchesController < ApplicationController
   end
 
   def index
-    @matches = Match.limit(200)
+    @matches = Match.limit(100)
   end
 
   def index_admin
