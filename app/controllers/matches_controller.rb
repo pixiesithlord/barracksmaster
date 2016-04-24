@@ -1,9 +1,9 @@
 class MatchesController < ApplicationController
   http_basic_authenticate_with name: "myron", password: "myron", only: :index_admin
 
-  if Rails.env == 'production'
-    caches_action :index, expires_in: 10.minutes
-  end
+  # if Rails.env == 'production'
+  #   caches_action :index, expires_in: 10.minutes
+  # end
 
   def index
     @matches = Match.limit(100)
