@@ -38,8 +38,6 @@ class Match < ActiveRecord::Base
       radiant = []
       dire    = []
 
-      offset = player_ids.count/2
-
       self.payload['players'].each do |player_data|
         steamID_64_bit_id = Player.steamID_from_32_to_64(player_data['steamID32']).to_s
         p                 = Player.find_by(steamID: steamID_64_bit_id)
