@@ -29,6 +29,7 @@ class Player < ActiveRecord::Base
   end
 
   def country_code
-    steam_data['loccountrycode']
+    steam_data['loccountrycode'].try(:downcase)
   end
+
 end

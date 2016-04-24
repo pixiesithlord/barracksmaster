@@ -3,7 +3,9 @@
     thead
       tr
         th Rank
-        th colspan="2" Player
+        th colspan="3" Player
+
+        th Games
         th Points
 
     tbody
@@ -17,6 +19,9 @@
           td
             = link_to p.url do
               = p.name
+          td
+            span class="flag-icon flag-icon-#{p.country_code}"
 
+          td= p.match_count
           td= p.points
 

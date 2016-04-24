@@ -11,8 +11,10 @@ class Match < ActiveRecord::Base
     self.payload['players'].each do |player_data|
       steamID_64_bit_id = Player.steamID_from_32_to_64(player_data['steamID32']).to_s
       
-      player = Player.find_or_create_by(steamID: steamID_64_bit_id)
-      player.update(points: player.points.to_i + player_data['pt'].to_i)
+      if player_data['pt'].to_i > 0
+        player = Player.find_or_create_by(steamID: steamID_64_bit_id)
+        player.update(points: player.points.to_i + player_data['pt'].to_i, match_count: player.match_count + 1)
+      end
 
       player_id_array << steamID_64_bit_id
     end
