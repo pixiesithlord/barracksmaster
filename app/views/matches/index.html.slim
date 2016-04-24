@@ -3,18 +3,17 @@
     thead
       tr
         th ID
-        th Time
-        th Winner
+        th Duration
         th Radiant
         th Dire
-        th Duration
+        th Winner
+        th Ended
 
     tbody
       - @matches.each do |m|
         tr
           td= m.payload['dotaMatchID']
-          td= time_ago_in_words(m.created_at) + " ago"
-          td= m.winning_side
+          td= (m.game_time/60).to_s + " mins"
           
           td
             - m.players['radiant'].each do |player|
@@ -32,5 +31,6 @@
               - if player != m.players['dire'].last
                 br
                 
-          td= (m.game_time/60).to_s + " mins"
+          td= m.winning_side
+          td= time_ago_in_words(m.created_at) + " ago"
     
