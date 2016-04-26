@@ -10,9 +10,9 @@ class Match < ActiveRecord::Base
 
     self.payload['players'].each do |player_data|
       steamID_64_bit_id = Player.steamID_from_32_to_64(player_data['steamID32']).to_s
-      player = Player.find_or_create_by(steamID: steamID_64_bit_id)
       
       if player_data['pt'].to_i > 0
+        player = Player.find_or_create_by(steamID: steamID_64_bit_id)
         player.update(points: player.points.to_i + player_data['pt'].to_i, match_count: player.match_count + 1)
       end
 
@@ -38,7 +38,7 @@ class Match < ActiveRecord::Base
       radiant = []
       dire    = []
 
-      m.payload['players'].each do |player_data|
+      self.payload['players'].each do |player_data|
         steamID_64_bit_id = Player.steamID_from_32_to_64(player_data['steamID32']).to_s
         p                 = Player.find_or_create_by(steamID: steamID_64_bit_id)
 
