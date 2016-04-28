@@ -13,7 +13,9 @@ class Match < ActiveRecord::Base
       
       if player_data['pt'].to_i > 0
         player = Player.find_or_create_by(steamID: steamID_64_bit_id)
-        player.update(points: player.points.to_i + player_data['pt'].to_i, match_count: player.match_count + 1)
+        calculated = player.points.to_i + player_data['pt'].to_i
+        points = (calculated) == nil ? 0 : calculated
+        player.update(points: calculated, match_count: player.match_count + 1)
       end
 
       player_id_array << steamID_64_bit_id
