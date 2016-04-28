@@ -31,5 +31,4 @@ class Player < ActiveRecord::Base
   def country_code
     steam_data['loccountrycode'].try(:downcase)
   end
-
 end
