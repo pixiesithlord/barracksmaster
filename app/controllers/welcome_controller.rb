@@ -21,6 +21,4 @@ class WelcomeController < ApplicationController
   def top_10
     render json: Player.get_top_10
   end
-
-  end
 end
