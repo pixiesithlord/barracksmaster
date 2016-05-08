@@ -39,27 +39,28 @@ class Match < ActiveRecord::Base
       dire    = []
 
       self.payload['players'].each do |player_data|
-        steamID_64_bit_id = Player.steamID_from_32_to_64(player_data['steamID32']).to_s
-        p                 = Player.find_or_create_by(steamID: steamID_64_bit_id)
+        steamID64                = Player.steamID_from_32_to_64(player_data['steamID32']).to_s
+        p                        = Player.find_or_create_by(steamID: steamID64)
+        player_data['steamID64'] = steamID64
 
         if player_data['team']
           if player_data['team'] == 2
-            radiant << p
+            radiant << player_data
           else
-            dire << p
+            dire << player_data
           end
         else
           if (player_data['ph'] == "sven") || (player_data['ph'] == "templar_assassin")
-            radiant << p
+            radiant << player_data
           else
-            dire << p
+            dire << player_data
           end
         end
       end
       
       self.update_attributes(player_data: {'radiant': radiant, 'dire': dire})
-      player_data
-
+      
+      self.player_data
     end
   end
 

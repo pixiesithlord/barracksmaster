@@ -7,7 +7,8 @@
         th Radiant
         th Dire
         th Winner
-        th Ended
+        th Played
+        th Details
 
     tbody
       - @matches.each do |m|
@@ -17,21 +18,68 @@
           
           td
             - m.players['radiant'].each do |player|
-              = link_to player['steam_data']['profileurl'] do
-                = player['steam_data']['personaname']
+              - p = Player.find_by(steamID: player['steamID64'])
 
-              - if player != m.players['radiant'].last
-                br
+              = link_to p.steam_data['profileurl'] do
+                 = image_tag p.photo, class: 'profile'
+                 = p.steam_data['personaname']
+              br
 
           td
             - m.players['dire'].each do |player|
-              -if player['steam_data']
-                = link_to player['steam_data']['profileurl'] do
-                  = player['steam_data']['personaname']
+              - p = Player.find_by(steamID: player['steamID64'])
 
-              - if player != m.players['dire'].last
-                br
+              = link_to p.steam_data['profileurl'] do
+                 = image_tag p.photo, class: 'profile'
+                 = p.steam_data['personaname']
+              br
                 
           td= m.winning_side
           td= time_ago_in_words(m.created_at) + " ago"
-    
+          td
+            button.btn.btn-primary data-target="##{m.match_id}" data-toggle="modal" type="button" 
+              | Show
+
+            .modal id="#{m.match_id}" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+              .modal-dialog role="document" 
+                .modal-content
+                  .modal-header
+                    button.close aria-label="Close" data-dismiss="modal" type="button" 
+                      span aria-hidden="true"  &times;
+                    h4#myModalLabel.modal-title Match Details
+                  .modal-body
+                    table.table
+                      thead
+                        tr
+                          th Side
+                          th Player
+                          th Net Worth
+                          th Gold
+                          th Lumber
+                          th Creep Score
+                      tbody
+                        - m.players['radiant'].each do |player|
+                          - p = Player.find_by(steamID: player['steamID64'])
+                          tr
+                            td Radiant
+                            td= p.steam_data['personaname']
+                            td= player['nw']
+                            td= player['gl']
+                            td= player['lm']
+                            td= player['cs']
+                        - m.players['dire'].each do |player|
+                          - p = Player.find_by(steamID: player['steamID64'])
+                          tr
+                            td Dire
+                            td= p.steam_data['personaname']
+                            td= player['nw']
+                            td= player['gl']
+                            td= player['lm']
+                            td= player['cs']
+
+
+                  .modal-footer
+                    button.btn.btn-default data-dismiss="modal" type="button"  Close
+sass:
+  .modal-dialog
+    color: #222

@@ -23,4 +23,7 @@ class MatchesController < ApplicationController
 
     render nothing: true
   end
+
+  def show
+  end
 end
