@@ -13,7 +13,7 @@
       - @matches.each do |m|
         tr
           td= m.payload['dotaMatchID']
-          td= (m.game_time/60).to_s + " mins"
+          td= m.duration
           
           td
             - m.players['radiant'].each do |player|

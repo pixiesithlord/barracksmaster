@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424045835) do
+ActiveRecord::Schema.define(version: 20160507091458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "leaderboard_entries", force: :cascade do |t|
+    t.json     "players"
+    t.date     "period"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "matches", force: :cascade do |t|
     t.string   "match_id"
@@ -29,7 +36,7 @@ ActiveRecord::Schema.define(version: 20160424045835) do
 
   create_table "players", force: :cascade do |t|
     t.integer  "match_ids",                            array: true
-    t.integer  "points"
+    t.integer  "points",      default: 0
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.json     "steam_data"

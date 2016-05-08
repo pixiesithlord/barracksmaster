@@ -2,6 +2,16 @@ class Player < ActiveRecord::Base
   default_scope {order(points: :desc)}
   after_create :set_steam_info
 
+  def self.get_top_10
+    players = []
+
+    Player.limit(10).each_with_index do |p, index|
+      players << {rank: index + 1, steamID: p.steamID, username: p.name, points: p.points }
+    end
+
+    players
+  end
+  
   def self.steamID_from_32_to_64(id)
     ('765' + (id + 61197960265728).to_s).to_i
   end
@@ -31,4 +41,5 @@ class Player < ActiveRecord::Base
   def country_code
     steam_data['loccountrycode'].try(:downcase)
   end
+
 end

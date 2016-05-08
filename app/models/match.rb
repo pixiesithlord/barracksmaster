@@ -44,15 +44,15 @@ class Match < ActiveRecord::Base
 
         if player_data['team']
           if player_data['team'] == 2
-            p && radiant << p
+            radiant << p
           else
-            p && dire << p
+            dire << p
           end
         else
           if (player_data['ph'] == "sven") || (player_data['ph'] == "templar_assassin")
-            p && radiant << p
+            radiant << p
           else
-            p && dire << p
+            dire << p
           end
         end
       end
@@ -61,5 +61,9 @@ class Match < ActiveRecord::Base
       player_data
 
     end
+  end
+
+  def duration
+    (game_time/60).to_s + " mins"
   end
 end
